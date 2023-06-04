@@ -4,5 +4,9 @@
   "description": "UI implementation for Phrase interview challenge. Backend has been delivered by Phrase team.",
   "scripts": {},
   "author": "Marta Mizgier <mizgier.m@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "volta": {
+    "node": "18.16.0",
+    "npm": "9.5.1"
+  }
 }
