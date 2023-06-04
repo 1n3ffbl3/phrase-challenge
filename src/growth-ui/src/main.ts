@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import { createI18n } from 'vue-i18n'
-import { messages } from '../i18n/translations'
+import enUS from '../i18n/locale/en-US.json'
 
 import App from './App.vue'
 import router from './router'
@@ -13,9 +13,12 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
-const i18n = createI18n({
-  locale: 'en',
-  messages
+type MessageSchema = typeof enUS
+const i18n = createI18n<[MessageSchema], 'en-US'>({
+  locale: 'en-US',
+  messages: {
+    'en-US': enUS
+  },
 })
 
 const vuetify = createVuetify({
