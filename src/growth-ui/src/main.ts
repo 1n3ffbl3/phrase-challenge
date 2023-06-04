@@ -18,7 +18,7 @@ const i18n = createI18n<[MessageSchema], 'en-US'>({
   locale: 'en-US',
   messages: {
     'en-US': enUS
-  },
+  }
 })
 
 const vuetify = createVuetify({
