@@ -1,0 +1,8 @@
+{
+  "name": "growth-frontend-interview",
+  "version": "1.0.0",
+  "description": "UI implementation for Phrase interview challenge. Backend has been delivered by Phrase team.",
+  "scripts": {},
+  "author": "Marta Mizgier <mizgier.m@gmail.com>",
+  "license": "ISC"
+}
