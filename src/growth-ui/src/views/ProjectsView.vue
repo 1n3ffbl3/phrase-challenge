@@ -18,7 +18,8 @@
 </template>
 
 <script lang="ts">
-import { type Project, useProjectStore } from '@/stores/projectStore'
+import type { Project } from '@/models/project'
+import { useProjectStore } from '@/stores/projectStore'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
