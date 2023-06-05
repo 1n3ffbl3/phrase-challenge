@@ -1,34 +1,40 @@
+import type { Project } from '@/models/project'
+import { ProjectsService } from '@/services/projectsService'
 import { defineStore } from 'pinia'
 
 export type ProjectStoreState = {
   projects: Project[]
   isLoading: boolean
   error: Record<string, unknown> | undefined
+  isDebug: boolean
 }
 
-export type ProjectStoreGetters = {}
+export type ProjectStoreGetters = {
+
+}
 
 export type ProjectStoreActions = {
   loadProjects(): Promise<void>
 }
 
-export interface Project {
-  id: string
-  name: string
-}
+const projectsService = new ProjectsService('http://localhost:5173/api')
 
 export const useProjectStore = defineStore<'project', ProjectStoreState, ProjectStoreGetters, ProjectStoreActions>('project', {
   state: () => ({
     projects: [],
     isLoading: false,
-    error: undefined
+    error: undefined,
+    isDebug: true
   }),
   getters: {},
   actions: {
     async loadProjects() {
-      const apiProjects = fetch('http://localhost:8090/projects')
+      const projects = await projectsService.getProjects();
 
-      console.log(apiProjects)
+      if (this.isDebug)
+        console.log('loadProjects:projects', projects)
+
+      this.projects = projects;
     }
   }
 })
