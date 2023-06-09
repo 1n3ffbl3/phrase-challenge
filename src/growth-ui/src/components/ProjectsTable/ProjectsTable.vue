@@ -35,7 +35,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, type PropType, ref } from 'vue'
-import { mdiPencil } from '@mdi/js'
 import { sort } from './sort'
 import { projectListHeaders } from './headers'
 import { useRouter } from 'vue-router'
