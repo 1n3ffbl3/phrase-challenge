@@ -1,3 +1,4 @@
+import { DefaultGrowthApiClient } from '@/growth-api-client'
 import type { Project } from '@/models/project'
 import { ProjectsService } from '@/services/projectsService'
 import { defineStore } from 'pinia'
@@ -9,17 +10,20 @@ export type ProjectStoreState = {
   isDebug: boolean
 }
 
-export type ProjectStoreGetters = {
-
-}
+export type ProjectStoreGetters = {}
 
 export type ProjectStoreActions = {
   loadProjects(): Promise<void>
 }
 
-const projectsService = new ProjectsService('http://localhost:5173/api')
+const projectsService = new ProjectsService(new DefaultGrowthApiClient('http://localhost:5173/api'))
 
-export const useProjectStore = defineStore<'project', ProjectStoreState, ProjectStoreGetters, ProjectStoreActions>('project', {
+export const useProjectStore = defineStore<
+  'project',
+  ProjectStoreState,
+  ProjectStoreGetters,
+  ProjectStoreActions
+>('project', {
   state: () => ({
     projects: [],
     isLoading: false,
@@ -29,12 +33,9 @@ export const useProjectStore = defineStore<'project', ProjectStoreState, Project
   getters: {},
   actions: {
     async loadProjects() {
-      const projects = await projectsService.getProjects();
+      const projects = await projectsService.getProjects()
 
-      if (this.isDebug)
-        console.log('loadProjects:projects', projects)
-
-      this.projects = projects;
+      this.projects = projects
     }
   }
 })
