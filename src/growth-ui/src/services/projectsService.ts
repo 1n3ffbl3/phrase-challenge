@@ -25,12 +25,14 @@ export class ProjectsService {
     return this.mapToProject(getProjectByIdResponse)
   }
 
-  async createProject(project: Omit<Project, 'id' | 'createdAt' | 'updatedAt' | 'dueDate'>): Promise<Project> {
+  async createProject(
+    project: Omit<Project, 'id' | 'createdAt' | 'updatedAt' | 'dueDate'>
+  ): Promise<Project> {
     const createdProjectResponse = await this.client.createProject({
       name: project.name,
       status: project.status,
       sourceLanguage: project.sourceLanguage,
-      targetLanguages: project.targetLanguages,
+      targetLanguages: project.targetLanguages
     })
 
     return this.mapToProject(createdProjectResponse)

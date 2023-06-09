@@ -37,8 +37,8 @@ import { ref } from 'vue'
 import { z } from 'zod'
 import { sourceLanguageRules, nameRules, targetLanguagesRules } from '@/shared/rules'
 import { languageOptions } from '@/shared/language'
-import { defaultClient } from '@/growth-api-client/default';
-import { ProjectsService } from '@/services/projectsService';
+import { defaultClient } from '@/growth-api-client/default'
+import { ProjectsService } from '@/services/projectsService'
 
 const projectsService = new ProjectsService(defaultClient)
 
@@ -115,7 +115,6 @@ const handleSubmit = async () => {
     console.error(validationResult.error)
   }
 }
-
 </script>
 
 <style scoped>
