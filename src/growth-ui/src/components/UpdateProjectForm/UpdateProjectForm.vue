@@ -18,18 +18,29 @@
     ></v-autocomplete>
     <v-btn type="submit" color="primary">Submit</v-btn>
   </v-form>
-  <v-card>
-    <v-card-title> Result </v-card-title>
+  <v-card vclass="mx-auto" max-width="344" variant="outlined">
+    <v-card-title>Result</v-card-title>
     <v-card-text v-if="updateState.data !== undefined">
-      {{ updateState.data.id }}
-      {{ updateState.data.name }}
-      {{ updateState.data.sourceLanguage }}
-      {{ updateState.data.targetLanguages.join(', ') }}
+      <v-card-item>
+        <div>
+          <div class="text-overline mb-1">Name: {{ updateState.data.name }}</div>
+          <div class="text-caption">Id:{{ updateState.data.id }}</div>
+          <div class="text-caption">Source language: {{ updateState.data.sourceLanguage }}</div>
+          <div class="text-caption">
+            Target language(s): {{ updateState.data.targetLanguages.join(', ') }}
+          </div>
+        </div>
+      </v-card-item>
     </v-card-text>
     <v-card-text v-else-if="updateState.error !== undefined">
       An error has occured when
     </v-card-text>
   </v-card>
+  <div class="come-back-to-projects-btn-wrapper">
+    <RouterLink to="/projects">
+      <v-btn color="primary" class="come-back-to-projects">Come back to projects</v-btn>
+    </RouterLink>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -40,6 +51,7 @@ import { sourceLanguageRules, nameRules, targetLanguagesRules } from '@/shared/r
 import { toRefs } from 'vue'
 import { ref, type PropType } from 'vue'
 import { z } from 'zod'
+import { RouterLink } from 'vue-router'
 
 const params = defineProps({
   project: {
@@ -127,6 +139,9 @@ const handleSubmit = async () => {
 
 <style scoped>
 .update-project-form {
+  margin: 16px;
+}
+.come-back-to-projects-btn-wrapper {
   margin: 16px;
 }
 </style>

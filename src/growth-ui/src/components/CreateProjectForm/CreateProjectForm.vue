@@ -18,18 +18,29 @@
     ></v-autocomplete>
     <v-btn type="submit" color="primary">Submit</v-btn>
   </v-form>
-  <v-card>
-    <v-card-title> Result </v-card-title>
+  <v-card vclass="mx-auto" max-width="344" variant="outlined">
+    <v-card-title>New Project</v-card-title>
     <v-card-text v-if="createState.data !== undefined">
-      {{ createState.data.id }}
-      {{ createState.data.name }}
-      {{ createState.data.sourceLanguage }}
-      {{ createState.data.targetLanguages.join(', ') }}
+      <v-card-item>
+        <div>
+          <div class="text-overline mb-1">Name: {{ createState.data.name }}</div>
+          <div class="text-caption">Id:{{ createState.data.id }}</div>
+          <div class="text-caption">Source language: {{ createState.data.sourceLanguage }}</div>
+          <div class="text-caption">
+            Target language(s): {{ createState.data.targetLanguages.join(', ') }}
+          </div>
+        </div>
+      </v-card-item>
     </v-card-text>
     <v-card-text v-else-if="createState.error !== undefined">
       An error has occured when
     </v-card-text>
   </v-card>
+  <div class="come-back-to-projects-btn-wrapper">
+    <RouterLink to="/projects">
+      <v-btn color="primary" class="come-back-to-projects">Come back to projects</v-btn>
+    </RouterLink>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -39,6 +50,7 @@ import { sourceLanguageRules, nameRules, targetLanguagesRules } from '@/shared/r
 import { languageOptions } from '@/shared/language'
 import { defaultClient } from '@/growth-api-client/default'
 import { ProjectsService } from '@/services/projectsService'
+import { RouterLink } from 'vue-router'
 
 const projectsService = new ProjectsService(defaultClient)
 
@@ -119,6 +131,9 @@ const handleSubmit = async () => {
 
 <style scoped>
 .create-project-form {
+  margin: 16px;
+}
+.come-back-to-projects-btn-wrapper {
   margin: 16px;
 }
 </style>
