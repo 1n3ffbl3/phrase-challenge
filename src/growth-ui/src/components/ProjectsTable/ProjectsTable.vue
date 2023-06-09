@@ -97,7 +97,6 @@ export default defineComponent({
       sortKey,
       sortDirection,
       headers: projectListHeaders,
-      mdiPencil,
       goEditProject
     }
   }
