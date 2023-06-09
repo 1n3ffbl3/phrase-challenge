@@ -12,6 +12,11 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import * as labsComponents from 'vuetify/labs/components'
+
+// Own components
+import OverviewTile from '@/components/OverviewTile/OverviewTile.vue'
+import TotalOverview from '@/components/TotalOverview/TotalOverview.vue'
 
 type MessageSchema = typeof enUS
 const i18n = createI18n<[MessageSchema], 'en-US'>({
@@ -22,11 +27,13 @@ const i18n = createI18n<[MessageSchema], 'en-US'>({
 })
 
 const vuetify = createVuetify({
-  components,
+  components: { ...components, ...labsComponents },
   directives
 })
 
 const app = createApp(App)
+
+app.component('OverviewTile', OverviewTile).component('TotalOverview', TotalOverview)
 
 app.use(createPinia())
 app.use(router)
